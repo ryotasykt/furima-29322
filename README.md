@@ -44,46 +44,49 @@ Things you may want to cover:
 
 ## items テーブル
 
-| Column                | Type       | Options                        |
-| --------------------- | ---------- | ------------------------------ |
-| user                  | references | null: false, foreign_key: true |
-| exhibition_image      | string     | null: false                    |
-| item_name             | string     | null: false                    |
-| item_description      | text       | null: false                    |
-| category              | string     | null: false                    |
-| item_condition        | string     | null: false                    |
-| shipping_charges      | string     | null: false                    |
-| shipping_region       | string     | null: false                    |
-| days_until_shipping   | string     | null: false                    |
-| price                 | integer    | null: false                    |
-| comment               | text       |                                |
+| Column                 | Type       | Options                        |
+| ---------------------- | ---------- | ------------------------------ |
+| user                   | references | null: false, foreign_key: true |
+| exhibition_image       | string     | null: false                    |
+| name                   | string     | null: false                    |
+| description            | text       | null: false                    |
+| category_id            | integer    | null: false                    |
+| condition_id           | integer    | null: false                    |
+| shipping_fee_burden_id | integer    | null: false                    |
+| prefecture_id         | integer    | null: false                    |
+| days_until_shipping_id | integer    | null: false                    |
+| price                  | integer    | null: false                    |
+| comment                | text       |                                |
 
 ### Association
 
 - belongs_to :user
-- has_many :purchases
+- has_one :purchase
+- belongs_to_active_hash :category
+- belongs_to_active_hash :condition
+- belongs_to_active_hash :shipping_fee_burden
+- belongs_to_active_hash :prefecture
+- belongs_to_active_hash :days_until_shipping
 
 ## purchases テーブル
 
-| Column                  | Type       | Options                        |
-| ------------------------| ---------- | ------------------------------ |
-| user                    | references | null: false, foreign_key: true |
-| credit_card_information | integer    | null: false                    |
-| expiration_date         | integer    | null: false                    |
-| security_code           | integer    | null: false                    |
+| Column | Type       | Options                        |
+| ------ | ---------- | ------------------------------ |
+| user   | references | null: false, foreign_key: true |
+| item   | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
 - belongs_to :item
-- has_one :shipping address
+- has_one :shipping_addresse
 
 ## shipping_addresses テーブル
 
 | Column                | Type    | Options                  |
 | --------------------- | ------- | ------------------------ |
-| postal_code           | integer | null: false              |
-| prefectures           | string  | null: false              |
+| postal_code           | string  | null: false              |
+| prefectures_id        | integer | null: false              |
 | city                  | string  | null: false              | 
 | address               | string  | null: false              |
 | building_name         | string  |                          |
@@ -91,4 +94,5 @@ Things you may want to cover:
 
 ### Association
 
-- belongs_to :purchases
+- belongs_to :purchase
+- belongs_to_active_hash :prefectures
