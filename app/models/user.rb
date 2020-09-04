@@ -7,7 +7,7 @@ class User < ApplicationRecord
          has_many :purchases
 
          with_options presence: true do
-           validates :nickname
+           validates :nickname, length: { maximum: 40 }
            validates :email, uniqueness: true
            validates :password, length: {minimum: 6 }, format: { with: /\A[a-zA-Z0-9]+\z/ }
            validates :password_confirmation, length: {minimum: 6 }, format: { with: /\A[a-zA-Z0-9]+\z/ }
