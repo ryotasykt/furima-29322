@@ -1,4 +1,16 @@
 class ItemsController < ApplicationController
-  def index # indexアクションを定義した
+  before_action :move_to_index, except: [:index]
+  def index 
+  end
+
+  def new
+  end
+
+  private
+
+  def move_to_index
+    unless user_signed_in?
+      redirect_to("/users/sign_in")
+    end
   end
 end
