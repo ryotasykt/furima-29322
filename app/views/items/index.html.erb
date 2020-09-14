@@ -1,6 +1,6 @@
 <%= render "shared/header" %>
-<div class='main'>
 
+<div class='main'>
   <%# 画面上部の「人生を変えるフリマアプリ」帯部分 %>
   <div class='title-contents'>
     <h2 class='service-title'>
@@ -123,7 +123,7 @@
   <%# 商品一覧 %>
   <div class='item-contents'>
     <h2 class='title'>ピックアップカテゴリー</h2>
-    <%= link_to '新規投稿商品', "#", class: "subtitle" %>
+    <%= link_to '新規投稿商品', new_item_path, class: "subtitle" %>
     <ul class='item-lists'>
 
       <%# 商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
@@ -180,10 +180,10 @@
   </div>
   <%# /商品一覧 %>
 </div>
-<div class='purchase-btn'>
+
+<%= link_to new_item_path, class: 'purchase-btn' do %>
   <span class='purchase-btn-text'>出品する</span>
-  <a href="#">
-    <%= image_tag 'camera.png' , size: '185x50' ,class: "purchase-btn-icon" %>
-  </a>
-</div>
+  <%= image_tag 'camera.png', size: '185x50', class: "purchase-btn-icon" %>
+<% end %>
+
 <%= render "shared/footer" %>

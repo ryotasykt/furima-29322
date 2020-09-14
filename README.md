@@ -29,8 +29,7 @@ Things you may want to cover:
 | --------------------- | ------- | ------------------------- |
 | nickname              | string  | null: false               |
 | email                 | string  | null: false, unique: true |
-| password              | string  | null: false               |
-| password_confirmation | string  | null: false               |
+| encrypted_password    | string  | null: false               |
 | family_name_kanji     | string  | null: false               |
 | first_name_kanji      | string  | null: false               |
 | family_name_kana      | string  | null: false               |
@@ -46,22 +45,21 @@ Things you may want to cover:
 
 | Column                 | Type       | Options                        |
 | ---------------------- | ---------- | ------------------------------ |
-| user                   | references | null: false, foreign_key: true |
-| exhibition_image       | string     | null: false                    |
+| user_id                | references | null: false, foreign_key: true |
 | name                   | string     | null: false                    |
-| description            | text       | null: false                    |
+| explanation            | text       | null: false                    |
 | category_id            | integer    | null: false                    |
 | condition_id           | integer    | null: false                    |
 | shipping_fee_burden_id | integer    | null: false                    |
-| prefecture_id         | integer    | null: false                    |
+| prefecture_id          | integer    | null: false                    |
 | days_until_shipping_id | integer    | null: false                    |
 | price                  | integer    | null: false                    |
-| comment                | text       |                                |
 
 ### Association
 
 - belongs_to :user
 - has_one :purchase
+- has_one_attached :image
 - belongs_to_active_hash :category
 - belongs_to_active_hash :condition
 - belongs_to_active_hash :shipping_fee_burden
@@ -70,10 +68,10 @@ Things you may want to cover:
 
 ## purchases テーブル
 
-| Column | Type       | Options                        |
-| ------ | ---------- | ------------------------------ |
-| user   | references | null: false, foreign_key: true |
-| item   | references | null: false, foreign_key: true |
+| Column  | Type       | Options                        |
+| ------- | ---------- | ------------------------------ |
+| user_id | references | null: false, foreign_key: true |
+| item_id | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -83,16 +81,16 @@ Things you may want to cover:
 
 ## shipping_addresses テーブル
 
-| Column                | Type    | Options                  |
-| --------------------- | ------- | ------------------------ |
-| postal_code           | string  | null: false              |
-| prefectures_id        | integer | null: false              |
-| city                  | string  | null: false              | 
-| address               | string  | null: false              |
-| building_name         | string  |                          |
-| phone_number          | integer | null: false, unique:true |
+| Column                | Type    | Options     |
+| --------------------- | ------- | ----------- |
+| postal_code           | string  | null: false |
+| prefecture_id         | integer | null: false |
+| city                  | string  | null: false | 
+| address               | string  | null: false |
+| building_name         | string  |             |
+| phone_number          | integer | null: false |
 
 ### Association
 
 - belongs_to :purchase
-- belongs_to_active_hash :prefectures
+- belongs_to_active_hash :prefecture
