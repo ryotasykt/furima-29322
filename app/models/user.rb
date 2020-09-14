@@ -11,7 +11,7 @@ class User < ApplicationRecord
   NAME_KANA_REGEX = /\A[ァ-ヶー－]+\z/.freeze
 
   with_options presence: true do
-    validates :nickname
+    validates :nickname, length: { maxmum: 40 }
     validates :email, uniqueness: true
     validates :password, format: { with: PASSWORD_REGEX, message: 'Include both letters and numbers' }
     validates :family_name_kanji, format: { with: NAME_KANJI_REGEX, message: 'Full-width characters' }
