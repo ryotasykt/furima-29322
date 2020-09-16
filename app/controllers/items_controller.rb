@@ -27,7 +27,7 @@ class ItemsController < ApplicationController
         render :edit
       end
     else
-      render :edit
+      render :show
     end
   end
 
