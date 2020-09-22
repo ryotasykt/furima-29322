@@ -7,6 +7,9 @@ class OrderAddress
   PHONE_NUMBER_REGEX = /\A\d{10,11}\z/.freeze
 
   with_options presence: true do
+    # 「購入者・商品情報」に関するバリデーション
+    validates :user_id
+    validates :item_id
     # 「クレジットカード情報」に関するバリデーション
     validates :token
     # 「配送先住所」に関するバリデーション
