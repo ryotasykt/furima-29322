@@ -39,7 +39,7 @@ Things you may want to cover:
 ### Association
 
 - has_many :items
-- has_many :purchases
+- has_many :orders
 
 ## items テーブル
 
@@ -58,7 +58,7 @@ Things you may want to cover:
 ### Association
 
 - belongs_to :user
-- has_one :purchase
+- has_one :order
 - has_one_attached :image
 - belongs_to_active_hash :category
 - belongs_to_active_hash :condition
@@ -66,7 +66,7 @@ Things you may want to cover:
 - belongs_to_active_hash :prefecture
 - belongs_to_active_hash :days_until_shipping
 
-## purchases テーブル
+## orders テーブル
 
 | Column  | Type       | Options                        |
 | ------- | ---------- | ------------------------------ |
@@ -81,16 +81,17 @@ Things you may want to cover:
 
 ## shipping_addresses テーブル
 
-| Column                | Type    | Options     |
-| --------------------- | ------- | ----------- |
-| postal_code           | string  | null: false |
-| prefecture_id         | integer | null: false |
-| city                  | string  | null: false | 
-| address               | string  | null: false |
-| building_name         | string  |             |
-| phone_number          | integer | null: false |
+| Column                | Type       | Options                        |
+| --------------------- | ---------- | ------------------------------ |
+| order_id              | references | null: false, foreign_key: true |
+| postal_code           | string     | null: false                    |
+| prefecture_id         | integer    | null: false                    |
+| city                  | string     | null: false                    | 
+| address               | string     | null: false                    |
+| building_name         | string     |                                |
+| phone_number          | string     | null: false                    |
 
 ### Association
 
-- belongs_to :purchase
+- belongs_to :order
 - belongs_to_active_hash :prefecture
