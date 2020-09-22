@@ -13,6 +13,5 @@ FactoryBot.define do
     after(:build) do |sample|
       sample.image.attach(io: File.open('app/assets/images/camera.png'), filename: 'camera.png')
     end
-
   end
 end

@@ -32,13 +32,13 @@ RSpec.describe OrderAddress, type: :model do
         sleep(1)
         @order.postal_code = '1234567'
         @order.valid?
-        expect(@order.errors.full_messages).to include("Postal code is invalid")
+        expect(@order.errors.full_messages).to include('Postal code is invalid')
       end
       it 'prefectureが選択されていないと購入できない' do
         sleep(2)
         @order.prefecture_id = 1
         @order.valid?
-        expect(@order.errors.full_messages).to include("Prefecture Select")
+        expect(@order.errors.full_messages).to include('Prefecture Select')
       end
       it 'cityが空だと購入できない' do
         sleep(1)
@@ -62,13 +62,13 @@ RSpec.describe OrderAddress, type: :model do
         sleep(1)
         @order.phone_number = '090-123-456'
         @order.valid?
-        expect(@order.errors.full_messages).to include("Phone number is invalid")
+        expect(@order.errors.full_messages).to include('Phone number is invalid')
       end
       it 'phone_numberが11桁以内でないと購入できない' do
         sleep(1)
         @order.phone_number = '090123456789'
         @order.valid?
-        expect(@order.errors.full_messages).to include("Phone number is invalid")
+        expect(@order.errors.full_messages).to include('Phone number is invalid')
       end
       it 'userの情報がないと購入できない' do
         sleep(1)
