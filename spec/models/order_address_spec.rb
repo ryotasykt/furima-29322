@@ -63,7 +63,7 @@ RSpec.describe OrderAddress, type: :model do
         @order.valid?
         expect(@order.errors.full_messages).to include("Phone number can't be blank")
       end
-      it 'phone_numberにはハイフンが含まれていると購入できない' do
+      it 'phone_numberにハイフンが含まれていると購入できない' do
         sleep(1)
         @order.phone_number = '090-123-456'
         @order.valid?
